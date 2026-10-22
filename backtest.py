@@ -18,7 +18,8 @@ benchmark = '^NSEI'
 # Fetch Data
 start_date = '2010-01-01'
 print("Downloading data...")
-data = yf.download(tickers + [benchmark], start=start_date)['Adj Close']
+# Fixed line: Use auto_adjust=True and select 'Close' instead of 'Adj Close'
+data = yf.download(tickers + [benchmark], start=start_date, auto_adjust=True)['Close']
 data = data.ffill().dropna()
 
 # Separate Benchmark and Portfolio Returns
